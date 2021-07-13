@@ -1,0 +1,35 @@
+<p></p>
+<aside style="background-color: #e8f3f9">
+    Para Webpay Plus REST, a diferencia de la versión anterior (SOAP), ya no se cuenta con una página de Voucher de Transbank.
+    De esta forma, al finalizar el proceso de pago, el usuario llega directamente al sitio del comercio, en donde este último
+    debe presentarle un comprobante de pago (una pantalla donde quede claro que el pago fue exitoso o fallido).<br>
+</aside>
+<p></p>
+<p>
+    <strong>Una vez finalizada a transacción</strong>, el comercio debe presentar una página al
+    tarjetahabiente para que este se informe del resultado de la transacción. La
+    información a presentar dependerá de si la transacción fue autorizada o no.
+</p>
+
+
+<p>Se recomienda, como mínimo, que posea:</p>
+<ul>
+    <li>Número de orden de pedido</li>
+    <li>Nombre del comercio (Tienda de Mall)</li>
+    <li>Monto y moneda de la transacción</li>
+    <li>Código de autorización de la transacción</li>
+    <li>Fecha de la transacción</li>
+    <li>Tipo de pago realizado (Débito o Crédito)</li>
+    <li>Tipo de cuota</li>
+    <li>Cantidad de cuotas</li>
+    <li>Monto de cada cuota</li>
+    <li>Cuatro últimos dígitos de la tarjeta bancaria</li>
+    <li>Descripción de los bienes y/o servicios</li>
+</ul>
+<p><strong>Cuando la transacción no sea autorizada</strong>, se recomienda informar al tarjetahabiente al respecto. Puede presentar un texto explicativo como:</p>
+<pre style="background-color:black; color:white;"><span data-toggle="tooltip" data-placement="left" class="btn-copy-snippet-demo one material-icons" data-original-title="" title=""></span><code class="hljs">Orden de Compra XXXXXXX rechazada
+
+Las posibles causas de este rechazo son:
+* Error en el ingreso de los datos de su tarjeta de crédito o débito (fecha y/o código de seguridad).
+* Su tarjeta de crédito o débito no cuenta con saldo suficiente.
+* Tarjeta aún no habilitada en el sistema financiero.</code></pre>
