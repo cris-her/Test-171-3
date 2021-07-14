@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {SharedService} from 'src/app/shared.service';
 
 @Component({
@@ -10,48 +10,38 @@ export class WebpayPlusComponent implements OnInit {
 
   constructor(private service:SharedService) { }
 
-  //DepartmentList:any=[];
+  @Input() trans:any;
+  Amount:number;
+  ClientCode:string;
+  BuyOrder:string;
+  Url:string;
 
   ModalTitle:string;
   ActivateAddEditTransComp:boolean=false;
-  trans:any;
+
   /*
   DepartmentIdFilter:string="";
   DepartmentNameFilter:string="";
   DepartmentListWithoutFilter:any=[];*/
 
   ngOnInit(): void {
-    //this.refreshDepList();
+    this.Amount=this.trans.Amount;
+    this.ClientCode=this.trans.ClientCode;
+    this.BuyOrder=this.trans.BuyOrder;
+    //this.createTrans();
   }
 
   addClick(){
     this.trans={
-      BuyOrder:"",
-      SessionId:"",
       Amount:1000,
-      ReturnUrl:""
+      ClientCode:"",
+      BuyOrder:""
     }
     this.ModalTitle="Carrito de compras";
     this.ActivateAddEditTransComp=true;
 
   }
 
-  editClick(item){
-    /*
-    this.trans=item;
-    this.ModalTitle="Edit Department";
-    this.ActivateAddEditDepComp=true;*/
-  }
-
-  deleteClick(item){
-    /*
-    if(confirm('Are you sure??')){
-      this.service.deleteDepartment(item.DepartmentId).subscribe(data=>{
-        alert(data.toString());
-        this.refreshDepList();
-      })
-    }*/
-  }
 
   closeClick(){
     this.ActivateAddEditTransComp=false;
@@ -59,38 +49,18 @@ export class WebpayPlusComponent implements OnInit {
   }
 
 
-  refreshDepList(){
-    /*
-    this.service.getDepList().subscribe(data=>{
-      this.DepartmentList=data;
-      this.DepartmentListWithoutFilter=data;
-    });*/
-  }
+  createTrans(){
+    var val = {Amount:this.Amount,
+               ClientCode:this.ClientCode,
+               BuyOrder:this.BuyOrder};
 
-  FilterFn(){
-    /*
-    var DepartmentIdFilter = this.DepartmentIdFilter;
-    var DepartmentNameFilter = this.DepartmentNameFilter;
-
-    this.DepartmentList = this.DepartmentListWithoutFilter.filter(function (el){
-        return el.DepartmentId.toString().toLowerCase().includes(
-          DepartmentIdFilter.toString().trim().toLowerCase()
-        )&&
-        el.DepartmentName.toString().toLowerCase().includes(
-          DepartmentNameFilter.toString().trim().toLowerCase()
-        )
-    });*/
-  }
-
-  sortResult(prop,asc){
-    /*
-    this.DepartmentList = this.DepartmentListWithoutFilter.sort(function(a,b){
-      if(asc){
-          return (a[prop]>b[prop])?1 : ((a[prop]<b[prop]) ?-1 :0);
-      }else{
-        return (b[prop]>a[prop])?1 : ((b[prop]<a[prop]) ?-1 :0);
-      }
-    })*/
+    this.service.createTransaction(val).subscribe(res=>{
+      //alert(`Liga de pago = ${res.toString()}`);
+      this.Url = res.toString();
+    });
+    
+    this.ModalTitle="";
+    this.ActivateAddEditTransComp=true;
   }
 
 }

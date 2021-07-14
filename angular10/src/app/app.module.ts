@@ -17,6 +17,7 @@ import { WebpayPlusComponent } from './webpay-plus/webpay-plus.component';
 import { CreateTransactionComponent } from './webpay-plus/create-transaction/create-transaction.component';
 import { ReturnPageComponent } from './return-page/return-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     WebpayPlusComponent,
     CreateTransactionComponent,
     ReturnPageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,

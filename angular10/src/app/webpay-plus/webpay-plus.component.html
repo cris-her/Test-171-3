@@ -1,15 +1,15 @@
-<!-- Button trigger modal -->
+<!-- Button trigger modal 
 <button type="button" class="btn btn-primary float-right m-2" 
 data-toggle="modal" data-target="#exampleModal"
 (click)="addClick()"
 data-backdrop="static" data-keyboard="false"
 >
     Carrito de compras
-  </button>
+  </button>-->
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
@@ -20,14 +20,43 @@ data-backdrop="static" data-keyboard="false"
           </button>
         </div>
         <div class="modal-body">
-            <app-create-transaction [trans]="trans" *ngIf="ActivateAddEditTransComp">
+            <app-create-transaction [url]="Url" *ngIf="ActivateAddEditTransComp">
             </app-create-transaction>
         </div>
       </div>
     </div>
   </div>
+<p></p>
+<div class="form-froup row">
+    
+    <label class="col-sm-2 col-form-label">Monto</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="Amount"
+        placeholder="Ingrese el monto">
+    </div>
 
-<p style="margin-left: 42%;">Pendiente f o r m u l a r i o</p>
+    <label class="col-sm-2 col-form-label">Código de cliente</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="ClientCode"
+        placeholder="Ingrese el código de cliente">
+    </div>
+
+    <label class="col-sm-2 col-form-label">Orden de compra</label>
+    <div class="col-sm-10">
+        <input type="text" class="form-control" [(ngModel)]="BuyOrder"
+        placeholder="Ingrese la orden de compra">
+    </div>
+
+</div>
+<p></p>
+
+<button type="button" (click)="createTrans()" class="btn btn-primary float-right m-2"
+data-toggle="modal" data-target="#exampleModal"
+data-backdrop="static" data-keyboard="false">
+    Confirmar compra
+</button>
+
+<p></p>
 
 <table class="table table-striped">
     <thead>
