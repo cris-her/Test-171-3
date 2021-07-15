@@ -117,5 +117,15 @@ namespace WebAPI.Helpers
 
             return content;
         }
+
+        public static string DescifrarNotificacion(string tkn)
+        {
+            string originalString = tkn;
+            string key = "5DCC67393750523CD165F17E1EFADD21";
+            string decryptedString =
+              AESCrypto.decrypt(key, originalString);
+            string finalString = decryptedString.Replace("%", "%25").Replace(" ", "%20").Replace("+", "%2B").Replace("=", "%3D").Replace("/", "%2F"); // Guía de integración indica decrypt.Replace
+            return finalString;
+        }
     }
 }

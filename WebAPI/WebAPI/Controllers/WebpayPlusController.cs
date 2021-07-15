@@ -10,6 +10,8 @@ using WebAPI.Models;
 using Transbank.Webpay.WebpayPlus.Responses;
 using WebAPI.Helpers;
 using System.Text.RegularExpressions;
+using System.Reflection;
+using Microsoft.Extensions.Primitives;
 
 namespace WebAPI.Controllers
 {
@@ -56,6 +58,26 @@ namespace WebAPI.Controllers
             string ligaDeCobro = XMLstandard.leerXml(respuestaDescifrada);
 
             return new JsonResult(ligaDeCobro);
+        }
+
+        [HttpPost]
+        [Route("RecibirRespuesta")]
+        [Consumes("application/x-www-form-urlencoded")]
+        public JsonResult RecibirRespuesta([FromForm]IFormCollection res)
+        {
+            //ICollection<string> key = res.Keys;
+
+            //var allProps = res.GetType().GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).OrderBy(pi => pi.Name).ToList();
+            //var allFields = res.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).OrderBy(pi => pi.Name).ToList();
+
+            PropertyInfo highlightedItemProperty = res.GetType().GetProperties(BindingFlags.NonPublic | BindingFlags.Instance).Single(pi => pi.Name == "Store");
+            Dictionary<string, StringValues> highlightedItemValue = (Dictionary<string, StringValues>)highlightedItemProperty.GetValue(res, null);
+            
+            string value = highlightedItemValue.Values.ElementAt(0)[0];
+            string xml = XMLstandard.DescifrarNotificacion(value);
+            //var objeto = XMLstandard.deserializaXML(xml);
+
+            return new JsonResult(xml);
         }
     }
 }
