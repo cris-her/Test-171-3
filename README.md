@@ -9,3 +9,6 @@ https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-
 
 
 https://alvinalexander.com/git/git-show-change-username-email-address/  
+
+
+The author is Koushik Dutta, who has been well-known and respected for many years. Vysor is pretty safe.  
