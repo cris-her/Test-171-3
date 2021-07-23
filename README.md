@@ -6,3 +6,6 @@ git clone https://username@github.com/username/repo_name
 
 
 https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token  
+
+
+https://alvinalexander.com/git/git-show-change-username-email-address/  
