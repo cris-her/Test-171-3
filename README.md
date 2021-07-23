@@ -3,3 +3,6 @@ restarting this service may fix the System.IO.IOException: Failed to bind to add
 
 Cloning a private Github repo  
 git clone https://username@github.com/username/repo_name  
+
+
+https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token  
