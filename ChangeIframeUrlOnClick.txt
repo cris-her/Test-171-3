@@ -1,0 +1,66 @@
+public IActionResult Menu(string date)
+{
+    Menu miMenu = new Menu();
+    string url = "";
+
+    var client = new RestClient(url);
+    var request = new RestRequest(Method.GET);
+    IRestResponse response = client.Execute(request);
+
+    var content = response.Content;
+    miMenu = JsonConvert.DeserializeObject<Menu>(content);
+
+
+    if (date == null)
+    {
+        ViewBag.myURL = miMenu.menu[0].url;
+    }
+    else
+    {
+        ViewBag.myURL = date;
+    }
+
+    return View(miMenu);
+}
+
+
+@model WebApplication1.Models.Menu
+
+@{
+    ViewBag.Title = "Menú";
+}
+
+<p></p>
+
+@using (Html.BeginForm("Menu", "Home", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Menú</legend>
+        @foreach (var item in Model.menu)
+        {
+            <a class="btn btn-info" href="@item.url" target="search_iframe">@item.title</a>
+        }
+    </fieldset>
+}
+
+<div class="modal-body">
+    <iframe name="search_iframe" src="@Url.Content(ViewBag.myURL)" style="width: 100%; height: 700px;"></iframe>
+</div>
+<p></p>
+
+@*@RenderPage("~/Views/Home/Timeline.cshtml")*@
+
+@*<iframe src="https://beamtic.com/Examples/ip.php" style="width:450px;height:450px;overflow:scroll;" id="MyFrame"></iframe>
+<select id="MySelectMenu">
+    <option value="https://beamtic.com/Examples/ip.php">Show IP</option>
+    <option value="https://beamtic.com/Examples/user-agent.php">Show User Agent</option>
+</select>
+<button onClick="newSrc();">Change Iframe Src</button>
+
+<script>
+    function newSrc() {
+        var e = document.getElementById("MySelectMenu");
+        var newSrc = e.options[e.selectedIndex].value;
+        document.getElementById("MyFrame").src = newSrc;
+    }
+</script>*@
